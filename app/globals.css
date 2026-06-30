@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --white: #ffffff;
+  --paper: #fafaf8;
+  --ink: #0f1715;
+  --ink-soft: #4a5654;
+  --ink-faint: #8a9492;
+
+  --teal: #03999a;
+  --teal-600: #027c7d;
+  --teal-100: #d3f0ef;
+  --teal-50: #eefaf9;
+
+  --mint: #e3f5ef;
+  --peach: #fbe9e1;
+  --butter: #faf3d9;
+  --lavender: #ece8f7;
+  --sky: #e3eff5;
+  --blush: #fbe5ec;
+  --coral: #fde8e0;
+  --periwinkle: #e8ecfa;
+  --sage: #e8f0e3;
+  --rose-50: #fdf0f2;
+  --lilac: #f3eefa;
+
+  --border: #e7e9e7;
+
+  /* Standardized radii */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 28px;
+  --radius-xl: 32px;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(3, 153, 154, 0.18);
+  color: var(--ink);
+}
+
+/* Eyebrow pill */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal-600);
+  background: var(--teal-100);
+  padding: 6px 14px;
+  border-radius: 9999px;
+}
+
+/* Container */
+.container-x {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Animated gradient mesh (AI callout + final CTA) */
+@keyframes meshShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.mesh-bg {
+  background: linear-gradient(135deg, var(--teal-50) 0%, var(--lavender) 35%, var(--sky) 70%, var(--teal-50) 100%);
+  background-size: 200% 200%;
+  animation: meshShift 20s ease infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: #dcdfdd; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #c7cbc9; }
+
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Trusted testimonials auto-scroll marquee */
+@keyframes trustedScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.trusted-track {
+  display: flex;
+  width: max-content;
+  animation: trustedScroll 50s linear infinite;
+}
+.trusted-track:hover {
+  animation-play-state: paused;
+}
+
+/* Logo strip rows */
+.logo-track {
+  display: flex;
+  width: max-content;
+  animation: trustedScroll 42s linear infinite;
+}
+.logo-track-rev {
+  animation-direction: reverse;
+}
+.logo-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
